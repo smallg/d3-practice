@@ -18,6 +18,8 @@
 <p>Cat</p>
 <p>Dog</p>
 <p class="first">First</p>
+<p class="second">Second</p>
+<h3>h3</h3>
 <script type="text/javascript">
     // var paragraphs = document.getElementsByTagName('p');
     // for (var i =0; i< paragraphs.length; i++){
@@ -61,6 +63,30 @@
             // .classed({'blue': true, 'big-size': false})
             // .classed('blue big-size', false)
             .classed('blue', true).classed('big-size', false);
+
+    d3.select('p.second').property('id', 'second');
+
+    var h3 = d3.select('h3').text('text h3');
+    console.log(h3.html());
+    /**
+     * selection.attr(name[, value])
+     * selection.classed(name[, value])
+     * selection.style(name[, value])
+     * selection.property(name[, value])
+     * selection.text([value])
+     * selection.html([value])
+     *
+     * selection.insert(name[, before])
+     * selection.append(name)
+     * selection.remove();
+     */
+
+    var body = d3.select('body');
+    body.append('p').text('append');
+    body.insert('p', 'h3').text('insert');
+    body.insert('h4', 'h3').text('insert h4').property('id', 'insert');
+    var test = d3.select('h4#insert');
+    test.remove();
 
 </script>
 </body>

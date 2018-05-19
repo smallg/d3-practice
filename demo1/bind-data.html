@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../lib/d3.v5.js"></script>
+    <style>
+        .blue {
+            color: blue;
+        }
+
+        .big-size {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+<section id="first">
+    <p></p>
+    <p></p>
+    <p></p>
+</section>
+<section id="second">
+    <p>Fire</p>
+    <p>Water</p>
+    <p>Wind</p>
+</section>
+<section id="third">
+    <p>Lion</p>
+    <p>Tiger</p>
+    <p>Leopard</p>
+</section>
+<section id="fourth">
+    <p></p>
+    <p></p>
+    <p></p>
+</section>
+<section id="fifth">
+    <p></p>
+    <p></p>
+    <p></p>
+</section>
+<script type="text/javascript">
+    /**
+     * selection.datum([value])    add property '__data___'
+     * selection.data([values[, key]);
+     */
+    var p1 = d3.selectAll('#first p');
+    p1.datum(7);
+    console.log(p1, p1.datum());
+
+    var p2 = d3.selectAll('#second p');
+    p2.datum('Thunder')
+            .append('span')
+            .text(function (d, i) {
+                return ' ' + d + ' ' + i;
+            });
+    console.log(p2);
+
+    var dataset = [3, 6, 9, 12, 15]; //update update update enter enter
+    // var dataset = [3]; //update exit exit
+    var p3 = d3.selectAll('#third p');
+    var update = p3.data(dataset);
+    console.log(update);
+
+    var persons = [
+        {id: 3, name: '张三'},
+        {id: 6, name: '李四'},
+        {id: 9, name: '王五'}
+    ];
+    var p4 = d3.selectAll('#fourth p');
+    p4.data(persons)
+            .text(function (d) {
+                return d.id + ' : ' + d.name;
+            });
+
+    var persons1 = [
+        {id: 6, name: '张三'},
+        {id: 9, name: '李四'},
+        {id: 3, name: '王五'}
+    ];
+    p4.data(persons1, function (d) {
+        return d.id;
+    }).text(function (d) {
+        return d.id + ' : ' + d.name;
+    })
+
+</script>
+</body>
+</html>

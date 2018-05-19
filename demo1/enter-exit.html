@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../lib/d3.v5.js"></script>
+    <style>
+        .blue {
+            color: blue;
+        }
+
+        .big-size {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+<section id="first">
+    <p></p>
+</section>
+<section id="second">
+</section>
+<section id="third">
+    <p></p>
+    <p></p>
+    <p></p>
+</section>
+<script type="text/javascript">
+    // enter代表没有足够的元素
+    var dataset = [3, 6, 9];
+    // var p1 = d3.selectAll('#first p');
+    // var update = p1.data(dataset);
+    // var enter = update.enter();
+    // update.text(function (d) {
+    //     return d;
+    // });
+    // enter.append('p')
+    //         .text(function (d) {
+    //             return d;
+    //         });
+
+    d3.select('#second')
+            .selectAll('p')
+            .data(dataset)
+            .enter()
+            .text(function (d) {
+                return d;
+            })
+            .append('p')
+            .text(function (d) {
+                return d;
+            });
+
+    // exit代表没有足够的值
+    var data2 = [10];
+    var p2 = d3.selectAll('#third p');
+    var update = p2.data(data2);
+    var exit = update.exit();
+    update.text(function (d) {
+        return d;
+    });
+    exit.remove();
+</script>
+</body>
+</html>
