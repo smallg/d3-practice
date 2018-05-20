@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../lib/d3.v5.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+    var linear = d3.scaleLinear()
+            .domain([0, 500])//创建定义域
+            .range([0, 100]);//创建值域
+    console.log(linear(50));//定义域求值域
+    console.log(linear(250));
+    console.log(linear(450));
+    console.log(linear.invert(80));//值域求定义域
+    console.log(linear.ticks(5));//定义域内的坐标刻度
+    console.log(linear.ticks(10));
+
+    var pow = d3.scalePow().exponent(3);
+    console.log(pow(2));
+    console.log(pow(3));
+    pow.exponent(0.5);
+    console.log(pow(2));
+    console.log(pow(3));
+
+    d3.scalePow()
+            .exponent(3)
+            .domain([0, 3])//定义域为[0, 27]
+            .range([0, 90]);
+    console.log(pow(1.5)); //1.5三次方后再算
+
+    var quantize = d3.scaleQuantize()
+            .domain([0, 10])
+            .range(['red', 'green', 'blue', 'yellow', 'black']);
+    console.log(quantize(1));
+    console.log(quantize(3));
+    console.log(quantize(5.999));
+    console.log(quantize(6));
+
+    var quantize1 = d3.scaleQuantize()
+            .domain([0, 50])
+            .range(['#888', '#666', '#444', '#222', '#000']);
+    var r = [45, 35, 25, 15, 5];
+    var svg = d3.select('body').append('svg')
+            .attr('width', 400)
+            .attr('height', 400);
+    svg.selectAll('circle')
+            .data(r)
+            .enter()
+            .append('circle')
+            .attr('cx', function (d, i) {
+                return 50 + i * 30;
+            })
+            .attr('cy', 50)
+            .attr('r', function (d) {
+                return d;
+            })
+            .attr('fill', function (d) {
+                return quantize1(d);
+            });
+
+    var threshold = d3.scaleThreshold()
+            .domain([10, 20, 30])
+            .range(['red', 'green', 'blue', 'black']);
+    console.log(threshold(5));
+    console.log(threshold(15));
+    console.log(threshold(25));
+    console.log(threshold(35));
+    console.log(threshold.invertExtent('red'));
+    console.log(threshold.invertExtent('green'));
+    console.log(threshold.invertExtent('blue'));
+    console.log(threshold.invertExtent('black'));
+</script>
+</body>
+</html>

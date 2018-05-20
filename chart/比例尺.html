@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../lib/d3.v5.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+    var ordinal = d3.scaleOrdinal()
+            .domain([1, 2, 3, 4, 5])
+            .range([10, 20, 30, 40, 50]);
+    console.log(ordinal(1));//10
+    console.log(ordinal(3));//30
+    console.log(ordinal(5));//50
+    console.log(ordinal(8));//10
+
+    var width = 800;
+    var height = 600;
+    var data = d3.range(0, 10);
+    var color = d3.schemeCategory10;
+    var svg = d3.select('body').append('svg')
+            .attr('width', width)
+            .attr('height', height);
+    svg.selectAll('circle')
+            .data(data)
+            .enter()
+            .append('circle')
+            .attr('cx', function (d, i) {
+                return 30 + i * 80;
+            })
+            .attr('cy', 100)
+            .attr('r', 30)
+            .attr('fill', function (d, i) {
+                return color[i];
+            });
+
+    svg.selectAll('text')
+            .data(data)
+            .enter()
+            .append('text')
+            .attr('x', function (d, i) {
+                return i * 80;
+            })
+            .attr('y', 150)
+            .text(function (d, i) {
+                return color[i];
+            });
+
+</script>
+</body>
+</html>
