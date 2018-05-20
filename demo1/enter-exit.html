@@ -25,6 +25,11 @@
     <p></p>
     <p></p>
 </section>
+<section id="fourth">
+    <p></p>
+    <p></p>
+    <p></p>
+</section>
 <script type="text/javascript">
     // enter代表没有足够的元素
     var dataset = [3, 6, 9];
@@ -60,6 +65,20 @@
         return d;
     });
     exit.remove();
+
+    var data4 = ['a', 'b', 'c', 'd'];
+    var p4 = d3.select('#fourth').selectAll('p');
+    var update4 = p4.data(data4);
+    var enter4 = update4.enter();
+    var exit4 = update4.exit();
+    update4.text(function (d) {
+        return d;
+    });
+    enter4.append('p')
+            .text(function (d) {
+                return d;
+            });
+    exit4.remove();
 </script>
 </body>
 </html>
