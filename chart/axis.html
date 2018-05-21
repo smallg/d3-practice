@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../lib/d3.v5.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+    var width = 600;
+    var height = 600;
+    var svg = d3.select('body').append('svg')
+            .attr('width', width)
+            .attr('height', height);
+
+    var xScale = d3.scaleLinear()
+            .domain([0, 10])
+            .range([0, 300]);
+    var axis = d3.axisBottom(xScale);
+    var gAxis = svg.append('g')
+            .attr('transform', 'translate(80, 400)');
+    axis(gAxis);
+    // gAxis.call(axis);
+
+    var axisLeft = d3.axisLeft(xScale);
+    axisLeft.ticks(5);
+    var gAxisLeft = svg.append('g')
+            .attr('transform', 'translate(80,80)');
+    axisLeft(gAxisLeft);
+
+    var axisRight = d3.axisRight(xScale);
+    var gAxisRight = svg.append('g')
+            .attr('transform', 'translate(380,80)');
+    axisRight(gAxisRight);
+
+</script>
+</body>
+</html>
