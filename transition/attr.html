@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动画</title>
+    <script src="../lib/d3.v5.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+    var width = 600;
+    var height = 600;
+    var svg = d3.select('body').append('svg')
+            .attr('width', width)
+            .attr('height', height);
+    var rect = svg.append('rect')
+            .attr('fill', 'steelblue')
+            .attr('x', 10)
+            .attr('y', 10)
+            .attr('width', 100)
+            .attr('height', 30);
+
+    rect.transition()
+            .delay(500)
+            .duration(1000)
+            .attr('width', 300)
+            .transition()
+            .attr('height', 200)
+            .transition()
+            .attr('fill', 'yellow');
+</script>
+</body>
+</html>
